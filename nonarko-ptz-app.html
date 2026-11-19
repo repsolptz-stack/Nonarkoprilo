@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>НоНарко. Консультации о зависимости | ПТЗ</title>
+<style>
+  :root {
+    --bg: #f4f7f8;
+    --card: #ffffff;
+    --ink: #17222b;
+    --muted: #5c6d7a;
+    --accent: #0f8a88;
+    --accent-dark: #0a6866;
+    --accent-soft: #e4f4f3;
+    --border: #e1eaee;
+    --warn-bg: #fff8eb;
+    --warn-border: #f3d299;
+    --success: #18794e;
+    --shadow: 0 6px 24px rgba(18, 38, 52, 0.06);
+    --radius: 18px;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0 0 88px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 14px 14px 24px;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .brand-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--accent), #27b1ad);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .brand-mini-title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .brand-mini-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .badge-anon {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .hero-kicker {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 5px 11px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 800;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0 0 10px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .lead {
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    border-radius: 13px;
+    border: none;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.12s ease, opacity 0.15s ease, background 0.15s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.985);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-dark);
+  }
+
+  .btn-secondary {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+  }
+
+  .btn-outline {
+    background: #ffffff;
+    color: var(--ink);
+    border: 1px solid var(--border);
+  }
+
+  .btn-sm {
+    min-height: 38px;
+    padding: 7px 12px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  .consultant-header {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .avatar-box {
+    position: relative;
+    width: 84px;
+    height: 104px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #e9eff2;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .consultant-meta-name {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 3px;
+  }
+
+  .consultant-meta-exp {
+    font-size: 13px;
+    color: var(--accent-dark);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .consultant-meta-city {
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  .quote-box {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-left: 3px solid var(--accent);
+    background: #f7fbfb;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    font-size: 14px;
+    color: #243442;
+  }
+
+  .photo-upload-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-item {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 13px 14px;
+    background: #fcfdfd;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .service-item:hover {
+    border-color: var(--accent);
+    background: #f4faf9;
+  }
+
+  .service-title {
+    font-weight: 700;
+    font-size: 14.5px;
+    margin-bottom: 2px;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .service-pick {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    padding: 6px 10px;
+    border-radius: 9px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: 13px;
+    background: #f8fafb;
+    border: 1px solid #ebf1f4;
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .form-group {
+    margin-bottom: 13px;
+  }
+
+  label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="password"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #cddbe2;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: #ffffff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(15, 138, 136, 0.14);
+  }
+
+  textarea {
+    min-height: 92px;
+    resize: vertical;
+  }
+
+  .chips-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    border: 1px solid #cddbe2;
+    background: #ffffff;
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .chip.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-dark);
+  }
+
+  .result-box {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 14px;
+    background: #f4faf9;
+    border: 1px solid #bfe3e0;
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-dark);
+  }
+
+  .result-text {
+    white-space: pre-wrap;
+    font-size: 13.5px;
+    background: #ffffff;
+    border: 1px solid #d7ecea;
+    border-radius: 11px;
+    padding: 11px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .send-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .status-msg {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 12px;
+    border-radius: 10px;
+    display: none;
+  }
+
+  .status-msg.ok {
+    display: block;
+    background: #e8f7ef;
+    color: var(--success);
+    border: 1px solid #b7e4cb;
+  }
+
+  .status-msg.warn {
+    display: block;
+    background: var(--warn-bg);
+    color: #7c5208;
+    border: 1px solid var(--warn-border);
+  }
+
+  details.settings-box {
+    margin-top: 12px;
+    border: 1px dashed #c4d4dc;
+    border-radius: 13px;
+    padding: 10px 12px;
+    background: #fafcfd;
+  }
+
+  details.settings-box summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+    list-style: none;
+  }
+
+  details.settings-box summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .settings-inner {
+    margin-top: 10px;
+  }
+
+  .contact-row {
+    padding: 11px 0;
+    border-bottom: 1px solid #edf2f5;
+  }
+
+  .contact-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .contact-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+
+  .contact-val {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .phone-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  details.faq-item {
+    border-bottom: 1px solid #edf2f5;
+    padding: 11px 0;
+  }
+
+  details.faq-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  details.faq-item summary {
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  details.faq-item p {
+    margin-top: 7px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    z-index: 50;
+  }
+
+  .nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 6px 4px;
+    border-radius: 10px;
+  }
+
+  .nav-btn:hover,
+  .nav-btn:active {
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+  }
+
+  .nav-ico {
+    font-size: 16px;
+    line-height: 1.1;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="topbar">
+    <div class="brand-mini">
+      <div class="brand-dot">НН</div>
+      <div>
+        <div class="brand-mini-title">НоНарко | ПТЗ</div>
+        <div class="brand-mini-sub">Помощь при зависимостях</div>
+      </div>
+    </div>
+    <span class="badge-anon">Бесплатно и анонимно</span>
+  </header>
+
+  <!-- Главный экран-визитка -->
+  <section class="card" id="top">
+    <span class="hero-kicker">ВЫХОД БЛИЖЕ, ЧЕМ КАЖЕТСЯ</span>
+    <h1>Консультации для родственников и близких в Петрозаводске</h1>
+    <p class="lead">
+      Помогаем разобраться, что происходит с близким человеком, мягко замотивировать на лечение и выстроить понятный план действий без осуждения и лишней спешки.
+    </p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn btn-primary">Записаться</a>
+      <a href="tel:+79114220815" class="btn btn-secondary">Позвонить</a>
+    </div>
+  </section>
+
+  <!-- Консультант Аня -->
+  <section class="card" id="consultant">
+    <h2>Консультант кабинета</h2>
+    <div class="consultant-header">
+      <div class="avatar-box">
+        <img id="consultantPhoto" src="1268.jpg" alt="Консультант Аня" onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
+        <div id="avatarFallback" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-weight:800; color:#0a6866; font-size:22px;">АНЯ</div>
+      </div>
+      <div>
+        <div class="consultant-meta-name">Аня</div>
+        <div class="consultant-meta-exp">Волонтёрский опыт более 5 лет</div>
+        <div class="consultant-meta-city">Алкогольная и наркотическая зависимости • Петрозаводск</div>
+      </div>
+    </div>
+
+    <p>
+      Всем привет! Меня зовут Аня. Волей судьбы меня когда-то занесло в область наркологии. Уже больше 5 лет я занимаюсь волонтёрской деятельностью в сфере лечения алкогольной и наркотической зависимостей.
+    </p>
+    <p>
+      В Петрозаводске работает кабинет анонимной помощи, где каждый, кто столкнулся с проблемой наркомании или алкоголизма, а также их родственники, сможет получить бесплатную консультацию.
+    </p>
+
+    <div class="quote-box">
+      «Счастье можно найти даже в самые тёмные времена, если не забывать обращаться к свету»
+    </div>
+
+    <div class="photo-upload-row">
+      <span>Фото: 1268.jpg</span>
+      <label for="photoInput" class="btn btn-outline btn-sm" style="width:auto; margin:0; cursor:pointer;">Выбрать фото</label>
+      <input type="file" id="photoInput" accept="image/*" style="display:none;">
+    </div>
+  </section>
+
+  <!-- Чем помогает Аня -->
+  <section class="card" id="help">
+    <h2>Чем я могу помочь</h2>
+    <p class="lead" style="margin-bottom:12px;">Нажмите на нужный пункт — тема автоматически подставится в форму записи.</p>
+    <div class="services-list">
+      <div class="service-item" onclick="selectTopic('Замотивировать на лечение')">
+        <div>
+          <div class="service-title">Замотивировать на лечение</div>
+          <div class="service-desc">Как поговорить с близким, когда он отрицает проблему и отказывается от помощи.</div>
+        </div>
+        <span class="service-pick">Выбрать</span>
+      </div>
+
+      <div class="service-item" onclick="selectTopic('Объяснить механизм зависимости')">
+        <div>
+          <div class="service-title">Объяснить механизм зависимости</div>
+          <div class="service-desc">Простым языком о том, как устроена зависимость и почему привычные уговоры не работают.</div>
+        </div>
+        <span class="service-pick">Выбрать</span>
+      </div>
+
+      <div class="service-item" onclick="selectTopic('Организовать изоляцию и терапию')">
+        <div>
+          <div class="service-title">Организовать изоляцию и терапию</div>
+          <div class="service-desc">Пошаговый план безопасной организации первых этапов помощи и восстановления.</div>
+        </div>
+        <span class="service-pick">Выбрать</span>
+      </div>
+
+      <div class="service-item" onclick="selectTopic('Выбрать реабилитационный центр')">
+        <div>
+          <div class="service-title">Посоветовать, как выбрать реабилитационный центр</div>
+          <div class="service-desc">На что обратить внимание родственникам при выборе программы и условий.</div>
+        </div>
+        <span class="service-pick">Выбрать</span>
+      </div>
+
+      <div class="service-item" onclick="selectTopic('Первичная консультация для родственников')">
+        <div>
+          <div class="service-title">И многое другое — индивидуальная консультация</div>
+          <div class="service-desc">Разбор вашей конкретной ситуации в спокойном анонимном формате.</div>
+        </div>
+        <span class="service-pick">Выбрать</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- С чего начать родственнику -->
+  <section class="card">
+    <h2>С чего начать родственнику</h2>
+    <div class="steps-list">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Не оставайтесь в одиночестве</h3>
+          <p class="service-desc">Родственникам часто сложнее всего принять решение первыми. Анонимный разговор помогает снять панику.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Выберите удобный формат</h3>
+          <p class="service-desc">Можно прийти в кабинет в Петрозаводске или созвониться / написать онлайн.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Составьте спокойный план</h3>
+          <p class="service-desc">Вместе определите, как выстроить разговор с близким и какие шаги сделать дальше.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма быстрой анонимной записи -->
+  <section class="card" id="booking">
+    <h2>Быстрая запись на консультацию</h2>
+    <p class="lead" style="margin-bottom:14px;">Консультация бесплатная и анонимная. Можно указать только имя или псевдоним.</p>
+
+    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+      <div class="form-group">
+        <label for="clientName">Как к вам обращаться (можно анонимно)</label>
+        <input type="text" id="clientName" placeholder="Например: Елена, мама / Аноним" required>
+      </div>
+
+      <div class="form-group">
+        <label for="clientPhone">Телефон или контакт для связи</label>
+        <input type="text" id="clientPhone" placeholder="+7 (911) ... или @ник в Telegram" required>
+      </div>
+
+      <div class="form-group">
+        <label>Кто обращается</label>
+        <div class="chips-row" id="whoChips">
+          <button type="button" class="chip active" data-val="Родственник / близкий">Родственник / близкий</button>
+          <button type="button" class="chip" data-val="Сам столкнулся с проблемой">Сам столкнулся с проблемой</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Формат консультации</label>
+        <div class="chips-row" id="formatChips">
+          <button type="button" class="chip active" data-val="По телефону / онлайн">По телефону / онлайн</button>
+          <button type="button" class="chip" data-val="Очно в кабинете (ПТЗ)">Очно в кабинете (ПТЗ)</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="topicSelect">Чем нужно помочь</label>
+        <select id="topicSelect">
+          <option value="Замотивировать на лечение">Замотивировать на лечение</option>
+          <option value="Объяснить механизм зависимости">Объяснить механизм зависимости</option>
+          <option value="Организовать изоляцию и терапию">Организовать изоляцию и терапию</option>
+          <option value="Выбрать реабилитационный центр">Выбрать реабилитационный центр</option>
+          <option value="Первичная консультация для родственников">Первичная консультация / другое</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="clientNote">Кратко о ситуации (необязательно)</label>
+        <textarea id="clientNote" placeholder="Когда удобно связаться и что сейчас беспокоит больше всего..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Сформировать и отправить заявку</button>
+    </form>
+
+    <details class="settings-box">
+      <summary>Настройки автоотправки в Telegram-бота (для администратора)</summary>
+      <div class="settings-inner">
+        <div class="form-group">
+          <label for="tgBotToken">Telegram Bot Token (от @BotFather)</label>
+          <input type="password" id="tgBotToken" placeholder="123456789:AAH...">
+        </div>
+        <div class="form-group" style="margin-bottom:8px;">
+          <label for="tgChatId">Telegram Chat ID получателя</label>
+          <input type="text" id="tgChatId" placeholder="Например: 987654321">
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" onclick="saveTgSettings()">Сохранить настройки бота</button>
+        <div id="settingsSavedMsg" class="hint"></div>
+      </div>
+    </details>
+
+    <div id="resultBox" class="result-box" style="display:none;">
+      <div class="result-header">
+        <span id="ticketBadge">Заявка сформирована</span>
+        <button type="button" class="btn btn-outline btn-sm" style="width:auto;" onclick="copyApplicationText()">Копировать текст</button>
+      </div>
+      <div id="resultText" class="result-text"></div>
+
+      <div class="send-stack">
+        <button type="button" id="autoTgBtn" class="btn btn-primary" onclick="sendViaTelegramBot()">
+          Отправить автоматически в Telegram
+        </button>
+        <a id="directTgLink" href="https://t.me/Antoinette_nonarko" target="_blank" rel="noopener" class="btn btn-secondary">
+          Написать Ане в Telegram (@Antoinette_nonarko)
+        </a>
+        <a id="directVkLink" href="https://vk.me/nonarko_ptz" target="_blank" rel="noopener" class="btn btn-outline">
+          Открыть диалог ВКонтакте (nonarko_ptz)
+        </a>
+      </div>
+
+      <div id="sendStatus" class="status-msg"></div>
+    </div>
+  </section>
+
+  <!-- Контакты и адрес -->
+  <section class="card" id="contacts">
+    <h2>Адрес и телефоны в Петрозаводске</h2>
+
+    <div class="contact-row">
+      <div class="contact-label">Информационный кабинет</div>
+      <div class="contact-val">г. Петрозаводск, Лососинское шоссе, 7, второй этаж</div>
+      <div class="phone-actions">
+        <a href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%81%D0%BA%2C%20%D0%9B%D0%BE%D1%81%D0%BE%D1%81%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%207" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Открыть карту</a>
+        <button type="button" class="btn btn-outline btn-sm" onclick="copyPlain('г. Петрозаводск, Лососинское шоссе, 7, второй этаж', 'Адрес скопирован')">Копировать адрес</button>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-label">Телефоны для предварительной записи</div>
+      <div class="contact-val">+7 (8142) 77-63-04 • 8 911 422-08-15</div>
+      <div class="phone-actions">
+        <a href="tel:+78142776304" class="btn btn-secondary btn-sm">Позвонить 77-63-04</a>
+        <a href="tel:+79114220815" class="btn btn-primary btn-sm">Позвонить 422-08-15</a>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-label">Мессенджеры и соцсети</div>
+      <div class="phone-actions">
+        <a href="https://t.me/Antoinette_nonarko" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Telegram @Antoinette_nonarko</a>
+        <a href="https://vk.com/nonarko_ptz" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Сообщество ВКонтакте</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Частые вопросы -->
+  <section class="card" id="faq">
+    <h2>Частые вопросы</h2>
+
+    <details class="faq-item">
+      <summary>Консультация действительно бесплатная и анонимная?</summary>
+      <p>Да. Обратиться можно анонимно, без раскрытия лишних личных данных, и получить бесплатную консультацию для себя или близкого человека.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Можно позвонить или записаться, если сам зависимый против?</summary>
+      <p>Да, родственники часто обращаются первыми, чтобы понять, как правильно выстроить разговор, замотивировать на лечение и не навредить.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Где проходит очная встреча в Петрозаводске?</summary>
+      <p>Информационный кабинет находится по адресу: г. Петрозаводск, Лососинское шоссе, 7, второй этаж. Время визита согласуется предварительно по телефону или в сообщении.</p>
+    </details>
+  </section>
+</div>
+
+<!-- Нижняя панель навигации -->
+<nav class="bottom-nav" aria-label="Быстрая навигация">
+  <a href="#top" class="nav-btn"><span class="nav-ico">🏠</span><span>Главная</span></a>
+  <a href="#consultant" class="nav-btn"><span class="nav-ico">👤</span><span>Консультант</span></a>
+  <a href="#booking" class="nav-btn"><span class="nav-ico">✉️</span><span>Запись</span></a>
+  <a href="#contacts" class="nav-btn"><span class="nav-ico">📍</span><span>Контакты</span></a>
+</nav>
+
+<script>
+  let currentApplicationText = '';
+
+  function initChips(groupId) {
+    const group = document.getElementById(groupId);
+    if (!group) return;
+    group.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  function getActiveChipValue(groupId, fallback) {
+    const active = document.querySelector('#' + groupId + ' .chip.active');
+    return active ? active.getAttribute('data-val') : fallback;
+  }
+
+  function selectTopic(topicText) {
+    const sel = document.getElementById('topicSelect');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === topicText) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function loadTgSettings() {
+    const token = localStorage.getItem('nonarko_ptz_tg_token') || '';
+    const chatId = localStorage.getItem('nonarko_ptz_tg_chat_id') || '';
+    document.getElementById('tgBotToken').value = token;
+    document.getElementById('tgChatId').value = chatId;
+  }
+
+  function saveTgSettings() {
+    const token = document.getElementById('tgBotToken').value.trim();
+    const chatId = document.getElementById('tgChatId').value.trim();
+    localStorage.setItem('nonarko_ptz_tg_token', token);
+    localStorage.setItem('nonarko_ptz_tg_chat_id', chatId);
+    const msg = document.getElementById('settingsSavedMsg');
+    msg.textContent = (token && chatId)
+      ? 'Настройки Telegram-бота сохранены в браузере на этом устройстве.'
+      : 'Настройки очищены или заполнены не полностью.';
+  }
+
+  function buildTicketId() {
+    const now = new Date();
+    const pad = n => String(n).padStart(2, '0');
+    return 'PTZ-' + pad(now.getDate()) + pad(now.getMonth() + 1) + '-' + pad(now.getHours()) + pad(now.getMinutes());
+  }
+
+  function copyPlain(text, alertMsg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert(alertMsg || 'Скопировано');
+      }).catch(() => {
+        fallbackCopy(text, alertMsg);
+      });
+    } else {
+      fallbackCopy(text, alertMsg);
+    }
+  }
+
+  function fallbackCopy(text, alertMsg) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      alert(alertMsg || 'Скопировано');
+    } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function copyApplicationText() {
+    if (!currentApplicationText) return;
+    copyPlain(currentApplicationText, 'Текст заявки скопирован в буфер обмена');
+  }
+
+  function showStatus(type, text) {
+    const el = document.getElementById('sendStatus');
+    el.className = 'status-msg ' + type;
+    el.textContent = text;
+  }
+
+  function handleBookingSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('clientName').value.trim();
+    const contact = document.getElementById('clientPhone').value.trim();
+    const who = getActiveChipValue('whoChips', 'Родственник / близкий');
+    const format = getActiveChipValue('formatChips', 'По телефону / онлайн');
+    const topic = document.getElementById('topicSelect').value;
+    const note = document.getElementById('clientNote').value.trim();
+    const ticket = buildTicketId();
+
+    const lines = [
+      'Заявка на бесплатную консультацию (' + ticket + ')',
+      'Кабинет: НоНарко | Петрозаводск',
+      'Имя: ' + name,
+      'Контакт: ' + contact,
+      'Кто обращается: ' + who,
+      'Формат: ' + format,
+      'Тема: ' + topic
+    ];
+    if (note) {
+      lines.push('Комментарий: ' + note);
+    }
+
+    currentApplicationText = lines.join('
+');
+
+    document.getElementById('ticketBadge').textContent = 'Заявка #' + ticket;
+    document.getElementById('resultText').textContent = currentApplicationText;
+    document.getElementById('resultBox').style.display = 'block';
+
+    const encoded = encodeURIComponent(currentApplicationText);
+    document.getElementById('directTgLink').href = 'https://t.me/Antoinette_nonarko';
+    document.getElementById('directVkLink').href = 'https://vk.me/nonarko_ptz?text=' + encoded;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(currentApplicationText).catch(() => {});
+    }
+
+    const savedToken = (document.getElementById('tgBotToken').value || localStorage.getItem('nonarko_ptz_tg_token') || '').trim();
+    const savedChatId = (document.getElementById('tgChatId').value || localStorage.getItem('nonarko_ptz_tg_chat_id') || '').trim();
+
+    if (savedToken && savedChatId) {
+      sendViaTelegramBot(savedToken, savedChatId);
+    } else {
+      showStatus('warn', 'Текст заявки готов и скопирован. Нажмите кнопку отправки в Telegram или откройте диалог с Аней (@Antoinette_nonarko) / ВКонтакте.');
+    }
+
+    document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  async function sendViaTelegramBot(overrideToken, overrideChatId) {
+    const token = (overrideToken || document.getElementById('tgBotToken').value || localStorage.getItem('nonarko_ptz_tg_token') || '').trim();
+    const chatId = (overrideChatId || document.getElementById('tgChatId').value || localStorage.getItem('nonarko_ptz_tg_chat_id') || '').trim();
+
+    if (!currentApplicationText) {
+      showStatus('warn', 'Сначала заполните форму и сформируйте заявку.');
+      return;
+    }
+
+    if (!token || !chatId) {
+      showStatus('warn', 'Для автоотправки укажите Bot Token и Chat ID в настройках бота выше либо используйте кнопки перехода в Telegram или ВКонтакте.');
+      return;
+    }
+
+    const btn = document.getElementById('autoTgBtn');
+    btn.disabled = true;
+    btn.textContent = 'Отправляем...';
+
+    try {
+      const resp = await fetch('https://api.telegram.org/bot' + encodeURIComponent(token) + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: currentApplicationText
+        })
+      });
+      const data = await resp.json();
+      if (resp.ok && data.ok) {
+        showStatus('ok', 'Заявка успешно отправлена в Telegram.');
+      } else {
+        showStatus('warn', 'Не удалось отправить через бота: проверьте Token, Chat ID и нажал ли получатель «Запустить» в боте.');
+      }
+    } catch (err) {
+      showStatus('warn', 'Ошибка сети при отправке через бота. Текст скопирован — отправьте его через кнопку Telegram или ВКонтакте.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Отправить автоматически в Telegram';
+    }
+  }
+
+  document.getElementById('photoInput').addEventListener('change', function (e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (ev) {
+      const img = document.getElementById('consultantPhoto');
+      const fb = document.getElementById('avatarFallback');
+      img.src = ev.target.result;
+      img.style.display = 'block';
+      fb.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  initChips('whoChips');
+  initChips('formatChips');
+  loadTgSettings();
+</script>
+</body>
+</html>
